@@ -1,10 +1,11 @@
 <?php
-
+error_reporting (0);
 require_once "vistas/VistaJson.php";
 require_once "utilidades/ExcepcionApi.php";
 require_once "modelos/Usuario.php";
 require_once "modelos/Personaje.php";
 
+const ESTADO_METODO_NO_PERMITIDO=403;
 $objeto = NULL;
 $vista = new VistaJson();
 //die($_REQUEST["PATH_INFO"]);
@@ -36,9 +37,10 @@ $metodo = strtolower($_SERVER['REQUEST_METHOD']);
             break;
         case 'personajes':
             $objeto=new Personaje();
+            enrutador($metodo,$objeto,$peticion,$vista);
             break;
         default:
-            die("entrando");
+            die("algo falla");
     }
 
 function enrutador($metodo,$objeto,$peticion,$vista)    {
@@ -48,8 +50,7 @@ function enrutador($metodo,$objeto,$peticion,$vista)    {
             break;
 
         case 'post':
-            $resultado=$objeto::post($peticion);
-            $vista->imprimir($resultado);
+            $vista->imprimir($objeto::post($peticion));
             // Procesar método post
             break;
         case 'put':
@@ -60,12 +61,15 @@ function enrutador($metodo,$objeto,$peticion,$vista)    {
             // Procesar método delete
             break;
         default:
-            // Método no aceptado
+            $vista->estado = 405;
+            $cuerpo = [
+                "estado" => ESTADO_METODO_NO_PERMITIDO,
+                "mensaje" => utf8_encode("Esa solicitud es ilegal")
+            ];
+            $vista->imprimir($cuerpo);
         }
 
 }
-
-$vista = new VistaJson();
 
 set_exception_handler(function ($exception) use ($vista) {
 		$cuerpo = array(

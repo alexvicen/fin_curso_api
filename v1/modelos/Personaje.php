@@ -17,17 +17,6 @@ class Personaje{
     const NIVEL_FLECHA = "nivFlecha";
 
 
-
-
-    public static function get($peticion)
-    {
-        $cabeceras = apache_request_headers();
-        if (isset($cabeceras["Authorization"])) {
-            $idUsuario = $cabeceras["Authorization"];
-        }
-        return self::obtenerPersonajePorIdUsuario($idUsuario);
-
-    }
     public static  function obtenerPersonajePorIdUsuario($idUsuario)
     {
 
@@ -50,7 +39,7 @@ class Personaje{
         if ($sentencia->execute())
         return $sentencia->fetchAll(PDO::FETCH_ASSOC);
         else
-            return null;
+            throw new ExcepcionApi(self::ESTADO_ERROR, "Se ha producido un error");
     }
 
 }

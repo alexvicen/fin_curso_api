@@ -18,16 +18,13 @@ class VistaJson extends VistaApi
 
 	public function imprimir($cuerpo)
 	{
-
-		print_r($cuerpo);
-		die();
 		if ($this->$cuerpo["estado"]) {
 			http_response_code($this->$cuerpo["estado"]);
 		}
 
 		//header('Content-Type: application/json; charset=utf8');
 
-		echo json_encode($cuerpo, JSON_PRETTY_PRINT);
+		echo json_encode($cuerpo, JSON_PRETTY_PRINT| JSON_UNESCAPED_UNICODE);
 		exit;
 	}
 

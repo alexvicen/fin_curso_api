@@ -1,6 +1,6 @@
 <?php
-
 require_once 'utilidades/ConexionBD.php';
+require_once 'utilidades/ExcepcionApi.php';
 require_once 'Personaje.php';
 
 class Usuario
@@ -121,7 +121,6 @@ class Usuario
 
     private function loguear()
     {
-        $respuesta = array();
 
         $body = file_get_contents('php://input');
         $usuario = json_decode($body);
@@ -134,7 +133,7 @@ class Usuario
         if (self::autenticarPorCorreo($login, $contrasena)) {
             if ($usuarioBD = self::obtenerUsuarioPorCorreo($login)) {
                 http_response_code(200);
-                return ["estado" => 1, "personaje" => Personaje::obtenerPersonajePorIdUsuario($usuarioBD["id_usuario"])];
+                return ["estado" => 1, Personaje::obtenerPersonajePorIdUsuario($usuarioBD["id_usuario"])];
             } elseif ($usuarioBD = self::obtenerUsuarioPorLogin($login)) {
                 http_response_code(200);
                 return ["estado" => 1, Personaje::obtenerPersonajePorIdUsuario($usuarioBD["id_usuario"])];
