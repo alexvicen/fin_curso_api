@@ -35,6 +35,7 @@ class Personaje{
     const ESTADO_AUSENCIA_CLAVE_API=403;
     const ESTADO_ACTUALIZA_EXISTOSO = 201;
     const ESTADO_ERROR_BD=101;
+    const ESTADO_ERROR=103;
 
 
     public static function put($peticion)
@@ -155,6 +156,7 @@ class Personaje{
 
         $comando = "SELECT " .
             self::NOMBRE_PERSONAJE . "," .
+            self::FK_USUARIO.",".
             self::NIVEL . "," .
             self::NIVEL_CASCO . "," .
             self::NIVEL_ARCO . "," .
