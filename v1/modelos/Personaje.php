@@ -15,7 +15,16 @@ class Personaje{
     const NIVEL_GUANTES = "nivGuantes";
     const NIVEL_BOTAS = "nivBotas";
     const NIVEL_FLECHA = "nivFlecha";
-
+    const PEPITA = "pepita";
+    const HIERRO = "hierro";
+    const GEMA_BRUTO = "gema_bruto";
+    const ROCA = "roca";
+    const TRONCO = "tronco";
+    const LINGOTE_ORO = "lingote_oro";
+    const LINGOTE_HIERRO = "lingote_hierro";
+    const GEMA = "gema";
+    const PIEDRA = "piedra";
+    const TABLA_MADERA = "tabla_madera";
 
     public static  function obtenerPersonajePorIdUsuario($idUsuario)
     {
@@ -28,7 +37,17 @@ class Personaje{
             self::NIVEL_ESCUDO . "," .
             self::NIVEL_GUANTES . "," .
             self::NIVEL_BOTAS . "," .
-            self::NIVEL_FLECHA .
+            self::NIVEL_FLECHA . "," .
+            self::PEPITA . "," .
+            self::HIERRO . "," .
+            self::GEMA_BRUTO . "," .
+            self::ROCA . "," .
+            self::TRONCO . "," .
+            self::LINGOTE_ORO . "," .
+            self::LINGOTE_HIERRO . "," .
+            self::GEMA . "," .
+            self::PIEDRA . "," .
+            self::TABLA_MADERA .
             " FROM " . self::NOMBRE_TABLA .
             " WHERE " . self::FK_USUARIO . "=?";
 
