@@ -3,7 +3,7 @@
 require_once 'utilidades/ConexionBD.php';
 
 class Personaje{
-    //Datos de la tabla Campaña
+
     const NOMBRE_TABLA = "mos_personaje";
     const ID_PERSONAJE = "id_personaje";
     const NOMBRE_PERSONAJE = "nombre_personaje";
@@ -26,7 +26,7 @@ class Personaje{
     const PIEDRA = "piedra";
     const TABLA_MADERA = "tabla_madera";
 
-    /*const ESTADO_PARAMETROS_INCORRECTOS = 400;
+    const ESTADO_PARAMETROS_INCORRECTOS = 400;
     const ESTADO_URL_INCORRECTA = 454;
     const ESTADO_CREACION_EXITOSA = 201;
     const ESTADO_CREACION_FALLIDA = 102;
@@ -34,13 +34,12 @@ class Personaje{
     const ESTADO_CLAVE_NO_AUTORIZADA = 401;
     const ESTADO_AUSENCIA_CLAVE_API=403;
     const ESTADO_ACTUALIZA_EXISTOSO = 201;
-    const ESTADO_ERROR=100;
-    const ESTADO_ERROR_BD=200;*/
+    const ESTADO_ERROR_BD=101;
+
 
     public static function put($peticion)
     {
         if ($peticion == "actualizar") {
-
             return self::actualiza();
         }else{
             throw new ExcepcionApi(self::ESTADO_URL_INCORRECTA, "Url mal formada", 400);	}
@@ -141,7 +140,6 @@ class Personaje{
             $sentencia->bindParam(19, $fkUsuario);
 
             $resultado = $sentencia->execute();
-
             if ($resultado) {
                 return self::ESTADO_ACTUALIZA_EXISTOSO;
             } else {
