@@ -54,7 +54,7 @@ function enrutador($metodo,$objeto,$peticion,$vista)    {
             // Procesar método post
             break;
         case 'put':
-            // Procesar método put
+            $vista->imprimir($objeto::put($peticion));
             break;
 
         case 'delete':
