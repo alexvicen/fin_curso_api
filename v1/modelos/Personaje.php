@@ -9,6 +9,7 @@ class Personaje{
     const NOMBRE_PERSONAJE = "nombre_personaje";
     const FK_USUARIO = "fk_usuario";
     const NIVEL = "nivel";
+    const EXPERIENCIA = "experiencia";
     const NIVEL_CASCO = "nivCasco";
     const NIVEL_ARCO = "nivArco";
     const NIVEL_ESCUDO = "nivEscudo";
@@ -82,6 +83,7 @@ class Personaje{
         $nombrePersonaje=$personaje->nombre_personaje;
         $fkUsuario=$personaje->fk_usuario;
         $nivel=$personaje->nivel;
+        $experiencia=$personaje->experiencia;
         $nivCasco=$personaje->nivel_casco;
         $nivArco=$personaje->nivel_arco;
         $nivEscudo=$personaje->nivel_escudo;
@@ -103,6 +105,7 @@ class Personaje{
             $comando =	"UPDATE ". self::NOMBRE_TABLA ." SET ".
                 self::NOMBRE_PERSONAJE. " = ?".", ".
                 self::NIVEL. " = ?".", ".
+                self::EXPERIENCIA. " = ?".", ".
                 self::NIVEL_CASCO . " = ?".", ".
                 self::NIVEL_ARCO. " = ?".", ".
                 self::NIVEL_ESCUDO . " = ?".", ".
@@ -122,23 +125,24 @@ class Personaje{
             $sentencia = $pdo->prepare($comando);
             $sentencia->bindParam(1, $nombrePersonaje);
             $sentencia->bindParam(2, $nivel);
-            $sentencia->bindParam(3, $nivCasco);
-            $sentencia->bindParam(4, $nivArco);
-            $sentencia->bindParam(5, $nivEscudo);
-            $sentencia->bindParam(6, $nivGuantes);
-            $sentencia->bindParam(7, $nivBotas);
-            $sentencia->bindParam(8, $nivFlecha);
-            $sentencia->bindParam(9, $pepita);
-            $sentencia->bindParam(10, $roca);
-            $sentencia->bindParam(11, $tronco);
-            $sentencia->bindParam(12, $hierro);
-            $sentencia->bindParam(13, $gemaBruto);
-            $sentencia->bindParam(14, $lingoteOro);
-            $sentencia->bindParam(15, $lingoteHierro);
-            $sentencia->bindParam(16, $gema);
-            $sentencia->bindParam(17, $piedra);
-            $sentencia->bindParam(18, $tablaMadera);
-            $sentencia->bindParam(19, $fkUsuario);
+            $sentencia->bindParam(3, $experiencia);
+            $sentencia->bindParam(4, $nivCasco);
+            $sentencia->bindParam(5, $nivArco);
+            $sentencia->bindParam(6, $nivEscudo);
+            $sentencia->bindParam(7, $nivGuantes);
+            $sentencia->bindParam(8, $nivBotas);
+            $sentencia->bindParam(9, $nivFlecha);
+            $sentencia->bindParam(10, $pepita);
+            $sentencia->bindParam(11, $roca);
+            $sentencia->bindParam(12, $tronco);
+            $sentencia->bindParam(13, $hierro);
+            $sentencia->bindParam(14, $gemaBruto);
+            $sentencia->bindParam(15, $lingoteOro);
+            $sentencia->bindParam(16, $lingoteHierro);
+            $sentencia->bindParam(17, $gema);
+            $sentencia->bindParam(18, $piedra);
+            $sentencia->bindParam(19, $tablaMadera);
+            $sentencia->bindParam(20, $fkUsuario);
 
             $resultado = $sentencia->execute();
             if ($resultado) {
@@ -158,6 +162,7 @@ class Personaje{
             self::NOMBRE_PERSONAJE . "," .
             self::FK_USUARIO.",".
             self::NIVEL . "," .
+            self::EXPERIENCIA . "," .
             self::NIVEL_CASCO . "," .
             self::NIVEL_ARCO . "," .
             self::NIVEL_ESCUDO . "," .
